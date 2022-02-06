@@ -3,6 +3,7 @@ set number
 set softtabstop noexpandtab
 set shiftwidth=4
 set termguicolors
+filetype plugin on
 
 
 call plug#begin()
@@ -13,6 +14,11 @@ call plug#begin()
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 	Plug 'Pocco81/AutoSave.nvim'
 	Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'machakann/vim-sandwich'
+	Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -85,14 +91,22 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> ca <Plug>(coc-codeaction)
 
-
+" CHADtree
 nnoremap ex <cmd>CHADopen<cr>
+
+" Telescope
+nnoremap <C-f> <cmd>Telescope live_grep<cr>
+
+" NerdCommenter
+nnoremap <C-_> <cmd>call NERDComment(0, "toggle")<CR>
+inoremap <C-_> <C-o> <cmd>call NERDComment(0, "toggle")<CR>
+vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
+
 
 lua << EOF
 autosave = require("autosave")
-
 
 autosave.setup(
     {
