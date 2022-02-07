@@ -19,17 +19,24 @@ call plug#begin()
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'machakann/vim-sandwich'
 	Plug 'preservim/nerdcommenter'
+	Plug 'mfussenegger/nvim-dap'
+	Plug 'rcarriga/nvim-dap-ui'
+	Plug 'theHamsta/nvim-dap-virtual-text'
+	Plug 'Mofiqul/vscode.nvim'
 
 call plug#end()
 
-colorscheme darcula
+let g:vscode_style = "dark"
+let g:vscode_transparency = 1
+let g:vscode_italic_comment = 1
+colorscheme vscode
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'darculaOriginal',
+	  \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
@@ -104,6 +111,12 @@ nnoremap <C-_> <cmd>call NERDComment(0, "toggle")<CR>
 inoremap <C-_> <C-o> <cmd>call NERDComment(0, "toggle")<CR>
 vmap <C-_> <Plug>NERDCommenterToggle<CR>gv
 
+" Debugger
+nnoremap <silent> bp <cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <F9> <cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F8> <cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F7> <cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F6> <cmd>lua require'dap'.repl.open()<CR>
 
 lua << EOF
 autosave = require("autosave")
@@ -125,5 +138,56 @@ autosave.setup(
         debounce_delay = 135
     }
 )
+
+local dap = require("dap")
+
+dap.adapters.lldb = {
+		type = 'executable',
+		command = '/usr/bin/lldb-vscode',
+		name = 'lldb'
+}
+
+dap.configurations.cpp = {
+	{
+	name = "Launch",
+	type = "lldb",
+	request = "launch",
+	program = function()
+		return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+	end,
+	cwd = '${workspaceFolder}',
+	stopOnEntry = false,
+	args = {},
+	runInTerminal = false,
+	},
+}
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+dap.adapters.netcoredbg = {
+	type = 'executable',
+	command = '/usr/bin/netcoredbg',
+	args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "netcoredbg",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+  },
+}
+
+dap.adapters.python = {
+	type = "executable",
+	command = '/usr/bin/python3',
+	args = {"-m", "debugpy.adapter"}
+}
+
+require("nvim-dap-virtual-text").setup()
+
 EOF
 
