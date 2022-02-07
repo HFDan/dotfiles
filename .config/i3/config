@@ -181,6 +181,7 @@ bindsym $mod+r mode "resize"
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 exec_always --no-startup-id dunst &
+exec_always --no-startup-id picom --config ~/.config/picom.conf -b
 bindsym XF86KbdBrightnessDown exec brightnessctl --device='asus::kbd_backlight' set 1-
 bindsym XF86KbdBrightnessUp exec brightnessctl --device='asus::kbd_backlight' set 1+
 bindsym XF86Launch4 exec asusctl profile -n
@@ -188,6 +189,8 @@ bindsym XF86Launch1 exec supergfxctl -m integrated
 bindsym XF86MonBrightnessUp exec brightnessctl s 10+
 bindsym XF86MonBrightnessDown exec brightnessctl s 10-
 
-exec_always --no-startup-id feh --bg-scale /home/dan/Backgrounds/Hacknet.png
+exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/MilkyWay/contents/images/5120x2880.png
 
-bindsym Ctrl+Shift+L exec "i3lock-fancy"
+bindsym Ctrl+Shift+L exec "i3lock-fancy-multimonitor -b=0x20"
+
+
