@@ -44,5 +44,9 @@
 	},
 	"diagnostic.errorSign": "",
   	"diagnostic.warningSign": "",
-  	"diagnostic.infoSign": ""
+  	"diagnostic.infoSign": "",
+	"diagnostic.hintSign": "",
+	"semanticTokens.filetypes": ["*"],
+	"diagnostic.autoRefresh": true,
+	"diagnostic.refreshOnInsertMode": true
 }

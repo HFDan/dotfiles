@@ -4,6 +4,7 @@ set softtabstop noexpandtab
 set shiftwidth=4
 set termguicolors
 filetype plugin on
+set nowrap
 
 call plug#begin()
 	
@@ -30,11 +31,8 @@ call plug#end()
 let g:vscode_style = "dark"
 let g:vscode_transparency = 1
 let g:vscode_italic_comment = 1
+let g:coc_default_semantic_highlight_groups = 1
 colorscheme vscode
-
-" Startup actions
-CocDiagnostics
-CHADopen
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
@@ -113,7 +111,7 @@ function! s:show_documentation()
 endfunction
 
 " Remap for do codeAction of current line
-nmap <silent> ca <Plug>(coc-codeaction)
+nmap <silent> ca <cmd>CocAction<CR>
 
 let cocpmenuwinid = call popup_menu(a:items, {
      \ 'title': a:title,
@@ -226,7 +224,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     -- `false` will disable the whole extension
-    enable = true,
+    enable = false,
 
     -- list of language that will be disabled
    -- disable = { "c", "rust" },
