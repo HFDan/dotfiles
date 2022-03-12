@@ -3,8 +3,10 @@ set number
 set softtabstop noexpandtab
 set shiftwidth=4
 set termguicolors
+set mouse=a
 filetype plugin on
 set nowrap
+set foldmethod=syntax
 
 call plug#begin()
 	
@@ -13,10 +15,11 @@ call plug#begin()
 	Plug 'doums/darcula'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 	Plug 'Pocco81/AutoSave.nvim'
-	Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+	"Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+	Plug 'kyazdani42/nvim-web-devicons' " for file icons
+	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'jiangmiao/auto-pairs'
 	Plug 'machakann/vim-sandwich'
 	Plug 'preservim/nerdcommenter'
 	Plug 'mfussenegger/nvim-dap'
@@ -25,6 +28,12 @@ call plug#begin()
 	Plug 'Mofiqul/vscode.nvim'
 	Plug 'emilienlemaire/clang-tidy.nvim'
 	Plug 'paretje/nvim-man'
+	Plug 'norcalli/nvim-colorizer.lua'
+	Plug 'windwp/nvim-autopairs'
+	Plug 'tpope/vim-fugitive'
+	Plug 'rhysd/vim-clang-format'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'itchyny/vim-gitbranch'
 
 call plug#end()
 
@@ -32,22 +41,31 @@ let g:vscode_style = "dark"
 let g:vscode_transparency = 1
 let g:vscode_italic_comment = 1
 let g:coc_default_semantic_highlight_groups = 1
-colorscheme vscode
+colorscheme darcula
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! GetCurrentDate()
+	return strftime('%c')
+endfunction
+
 let g:lightline = {
-	  \ 'colorscheme': 'powerline',
+	  \ 'colorscheme': 'darculaOriginal',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'branch', 'filename'] ],
+	  \   'right': [['currentdate', 'lineinfo'], ['percent'], ['fileformat','fileencoding','filetype']]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'currentfunction': 'CocCurrentFunction',
+	  \   'currentdate': 'GetCurrentDate',
+	  \   'branch': 'gitbranch#name'
       \ },
+ 	  \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -124,7 +142,7 @@ call setbufvar(winbufnr(cocpmenuwinid), '&filetype', 'cocpmenu')``
 redraw
 
 " CHADtree
-nnoremap ex <cmd>CHADopen<cr>
+nnoremap ex <cmd>lua require'nvim-tree'.toggle()<cr>
 
 " Telescope
 nnoremap <C-f> <cmd>Telescope live_grep<cr>
@@ -236,6 +254,10 @@ require'nvim-treesitter.configs'.setup {
     -- additional_vim_regex_highlighting = false,
   },
 }
+
+require'colorizer'.setup()
+require'nvim-autopairs'.setup{}
+require'nvim-tree'.setup{}
 
 EOF
 
