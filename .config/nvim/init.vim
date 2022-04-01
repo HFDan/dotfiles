@@ -7,6 +7,7 @@ set mouse=a
 filetype plugin on
 set nowrap
 set foldmethod=syntax
+set foldlevel=999
 
 call plug#begin()
 	
@@ -35,6 +36,7 @@ call plug#begin()
 	Plug 'airblade/vim-gitgutter'
 	Plug 'itchyny/vim-gitbranch'
 	Plug 'andweeb/presence.nvim'
+	Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 call plug#end()
 
@@ -42,6 +44,8 @@ let g:vscode_style = "dark"
 let g:vscode_transparency = 1
 let g:vscode_italic_comment = 1
 let g:coc_default_semantic_highlight_groups = 1
+let g:nvimgdb_use_cmake_to_find_executables = 0
+let g:nvimgdb_use_find_executables = 0
 colorscheme darcula
 
 function! CocCurrentFunction()
@@ -92,6 +96,9 @@ inoremap <silent><nowait><expr> <Tab>
 inoremap <silent><expr> <S-TAB>
       \ coc#jumpable() ? "\<C-R>=coc#rpc#request('snippetPrev', [])<cr>" :
       \ "\<C-d>"
+
+nnoremap <silent>l <cmd>CocOutline<CR>
+nnoremap <silent>di <cmd>CocDiagnostics<CR>
 
 snoremap <buffer><nowait><silent><TAB> <Esc>:call coc#rpc#request('snippetNext', [])<cr>
 snoremap <buffer><nowait><silent><S-TAB> <Esc>:call coc#rpc#request('snippetPrev', [])<cr>
