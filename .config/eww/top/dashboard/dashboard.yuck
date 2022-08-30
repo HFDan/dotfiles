@@ -73,7 +73,7 @@
             (scale :value music_vol 
                    :onchange "backend/main.sh music.volume {}"
                    :min 0
-                   :max 100
+                   :max 101
                    :orientation "v"
                    :flipped true
                    :marks true)
