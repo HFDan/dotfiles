@@ -1,7 +1,7 @@
 #!/bin/bash
 # Opens eww system tray
 
-LOCK_FILE="$HOME/.cache/eww-sys.lock"
+LOCK_FILE="/tmp/$USER-eww-sys.lock"
 EWW_BIN="/usr/bin/eww"
 
 run() {

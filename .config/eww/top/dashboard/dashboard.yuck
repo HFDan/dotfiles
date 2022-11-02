@@ -203,7 +203,7 @@
                       :width "450"
                       :height "500px"
                       :anchor "center top")
-  :wm-ignore true
+  :wm-ignore false
   :stacking "fg"
   :windowtype "dialog"
 (dashboard))

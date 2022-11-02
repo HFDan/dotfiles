@@ -23,7 +23,7 @@ percentage () {
 }
 
 is_muted () {
-  pacmd list-sinks | awk '/muted/ { print $2 }'
+  pactl list sinks | awk '/muted/ { print $2 }'
 }
 
 get_percentage () {
@@ -31,7 +31,8 @@ get_percentage () {
   if [[ $muted == 'yes' ]]; then
     echo "muted"
   else
-    per=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+    # per=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+    per=$(pulsemixer --get-volume | cut -f1 -d' ')
     echo "${per}%"
   fi
 }
