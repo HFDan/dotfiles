@@ -1,13 +1,13 @@
-$radius: 10px;
+$radius: 20px;
 
 .dashboard {
-  background-color: $darkbg;
+  background-color: rgba(0,0,0,0.1);
   color: $fg;
   border-radius: $radius;
   font-family: Product Sans;
   font-size: 14px;
   .container {
-    padding: 10px;
+    padding: 5px;
     background-color: $bg;
     border-radius: 0px;
   }
@@ -54,22 +54,22 @@ $radius: 10px;
   .weicon {
     margin: 0 0 0 -145;
     margin-top: 20px;
-    font-size: 80px;
+    font-size: 5rem;
     color: $yellow;
   }
   .wereport {
     font-weight: bold;
     margin: -93 0 0 70;
-    font-size: 27px;
+    font-size: 2.5rem;
   }
   .wetemp {
     color: $green;
     margin-top: 0px;
-    font-size: 33px;
+    font-size: 2rem;
   }
   .wehumid {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: .9rem;
     color: $blue;
   }
 }
@@ -84,6 +84,9 @@ $radius: 10px;
 
 .services-box {
   margin-top: 10px;
+  background-color: $contrastbg;
+  border-radius: $radius;
+  font-family: Iosevka Nerd Font;
   .widget {
     transition: all ease 0.2s;
     &.deactivated {
@@ -100,41 +103,14 @@ $radius: 10px;
       background-color: $blue;
       color: $bg;
     }
+
     border-radius: $radius;
     padding: 30px 0px;
-    .icon {
-      font-family: Iosevka Nerd Font;
-      font-size: 25px;
-      padding: 0px 13px 0px 2px;
-    }
-    .controlssss {
-      background-color: $contrastbg;
-      border-radius: $radius;
-      font-family: Iosevka Nerd Font;
-      font-size: 20px;
-      margin: 0px 0px 0px 10px;
-      padding: 9px 20px;
-    }
-    .blueicon {
-      font-family: Iosevka Nerd Font;
-      font-size: 30px;
-      padding: 3px 0px 0px 2px;
-    }
-    .blue-info {
-      font-family: Product Sans;
-      font-size: 18px;
-      padding-top: 4px;
-    }
-    .content {
-      font-family: Product Sans;
-      font-size: 18px;
-      padding-top: 4px;
-    }
   }
 }
 
 .music {
-  background-color: $bg;
+  background-color: transparent;
   color: $fg;
   font-family: Product Sans;
   font-size: 14px;
@@ -142,7 +118,7 @@ $radius: 10px;
 
   .sliders-box {
     background-color: $contrastbg;
-    border-radius: 0px 0px $radius $radius;
+    border-radius: $radius;
     font-family: Iosevka Nerd Font;
     font-size: 20px;
     margin: 0px 0px 0px 10px;
@@ -156,6 +132,7 @@ $radius: 10px;
         margin-right: 0px;
         color: $cyan;
       }
+      
       & scale trough {
         all: unset;
         border-radius: 10px;
@@ -207,7 +184,7 @@ $radius: 10px;
   }
 
   .bg-picture {
-    min-width: 400px;
+    min-width: 500px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -215,11 +192,14 @@ $radius: 10px;
     padding: 15px 20px;
     .music-name {
       font-weight: bold;
-      font-size: 22px;
+      font-size: 1.3rem;
       margin-bottom: 5px;
+      text-shadow: 2px 3px 4px rgba(0,0,0,0.65);
     }
     .music-artist {
-      font-size: 16px;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      text-shadow: 2px 3px 4px rgba(0,0,0,0.65);
     }
 
     .picture {
@@ -228,7 +208,17 @@ $radius: 10px;
       background-size: contain;
       background-position: right;
       background-repeat: no-repeat;
-      border-radius: 0px;
+      border-radius: 10px;
+
+      .testpic {
+        min-height: 160px;
+        min-width: 160px;
+        border-radius: 10px;
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-left: 100px;
+      }
 
       margin: 0;
       padding: 0;
@@ -237,7 +227,7 @@ $radius: 10px;
 
   .controls {
     background-color: $contrastbg;
-    border-radius: $radius $radius 0px 0px;
+    border-radius: $radius;
     font-family: Iosevka Nerd Font;
     font-size: 20px;
     margin: 0px 0px 0px 10px;
@@ -274,7 +264,7 @@ $radius: 10px;
           background-color: $black;
           border: solid $bgSecondary 5px;
           min-height: 7px;
-          min-width: 185px;
+          min-width: 250px;
 
           & slider {
             min-width: 20px;
@@ -307,7 +297,7 @@ $radius: 10px;
           background-color: $black;
           border: solid $bgSecondary 5px;
           min-height: 7px;
-          min-width: 185px;
+          min-width: 250px;
           & highlight {
             all: unset;
             background-color: $yellow;
@@ -341,7 +331,7 @@ $radius: 10px;
           background-color: $black;
           border: solid $bgSecondary 5px;
           min-height: 7px;
-          min-width: 185px;
+          min-width: 250px;
           & highlight {
             all: unset;
             background-color: $red;
@@ -363,7 +353,7 @@ $radius: 10px;
           background-color: $black;
           border: solid $bgSecondary 5px;
           min-height: 7px;
-          min-width: 185px;
+          min-width: 250px;
           & highlight {
             all: unset;
             background-color: $magenta;
@@ -386,7 +376,7 @@ $radius: 10px;
     margin-right: 0px;
   }
   .label {
-    font-size: 16px;
+    font-size: 1.3rem;
     padding: 3px 0px 6px 0px;
   }
 }

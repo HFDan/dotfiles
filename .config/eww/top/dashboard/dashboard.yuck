@@ -17,7 +17,7 @@
         )
         (box :class "calendar-box"
              :orientation "h"
-             :space-evenly false
+             :space-evenly true
           (cal)
         )
       )
@@ -29,10 +29,13 @@
              :space-evenly true
              :style "background-image: url('${music_art_url}');"
 
-          (box :class "picture" :orientation "v" :space-evenly false :style "background-image: url('${music_albumart_url}');"
-            (label :text "${music_title}" :class "music-name" :halign "start" :limit-width 35)
-            (label :text "${music_artist}" :class "music-artist" :halign "start")
-            music_art_url_getter
+          (overlay
+            (overlay :class "picture" :orientation "h" :space-evenly false
+                (label :text "${music_title}" :class "music-name" :halign "start" :valign "start" :limit-width 30)
+                (label :text "${music_artist}" :class "music-artist" :halign "start" :valign "start")
+                music_art_url_getter
+                (box :class "testpic" :orientation "v" :halign "end" :space-evenly false :style "background-image: url('${music_albumart_url}');")
+            )
           )
         )
 
@@ -84,9 +87,6 @@
            :orientation "h"
            :space-evenly true
            :spacing 10
-        (box :class "calendar-box"
-             :orientation "h"
-             :space-evenly true
           (button :class "poweroff"
                   :tooltip "Poweroff"
                   :onclick "shutdown now"
@@ -102,7 +102,6 @@
                   :onclick "i3-msg exit"
             ""
           )
-        )
       )
       (box :class "controls-box"
            :orientation "h"
@@ -200,10 +199,10 @@
 (defwindow dashboard
   :geometry (geometry :x "0px"
                       :y "55px"
-                      :width "450"
+                      :width "600"
                       :height "500px"
                       :anchor "center top")
-  :wm-ignore false
+  :wm-ignore true
   :stacking "fg"
-  :windowtype "dialog"
+  :windowtype "normal"
 (dashboard))

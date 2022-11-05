@@ -1,10 +1,10 @@
 #!/bin/bash
 
+tmp_dir="/tmp/$USER/eww/spotify"
+tmp_cover_path=$tmp_dir/cover.png
+tmp_temp_path=$tmp_dir/temp.png
+tmp_albumart_path=$tmp_dir/albumart.png
 get_song_art () {
-  tmp_dir="$HOME/.cache/eww/spotify"
-  tmp_cover_path=$tmp_dir/cover.png
-  tmp_temp_path=$tmp_dir/temp.png
-  tmp_albumart_path=$tmp_dir/albumart.png
 
   if [ ! -d $tmp_dir ]; then
     mkdir -p $tmp_dir
@@ -31,11 +31,11 @@ get_song_art () {
 }
 
 echo_song_art_url () {
-  echo "$HOME/.cache/eww/spotify/cover.png"
+  echo "$tmp_dir/cover.png"
 }
 
 echo_albumart_url () {
-  echo "$HOME/.cache/eww/spotify/albumart.png"
+  echo "$tmp_dir/albumart.png"
 }
 
 if [[ $1 == "echo" ]]; then
