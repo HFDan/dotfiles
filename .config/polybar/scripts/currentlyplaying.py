@@ -15,7 +15,7 @@ class Song():
         self.artist = artist
 
 def get_player_status() -> PlayerStatus:
-    cmd = "/usr/bin/playerctl status 2>&1"
+    cmd = "/usr/bin/playerctl -p spotify status 2>&1"
     res = subprocess.run(cmd, shell=True, capture_output=True, encoding='utf-8').stdout.strip()
     
     match res:
@@ -27,10 +27,10 @@ def get_player_status() -> PlayerStatus:
             return PlayerStatus.NOPLAYER
 
 def get_current_playing_song() -> Song:
-    cmd = "/usr/bin/playerctl metadata --format \"{{ artist }}\" 2>&1"
+    cmd = "/usr/bin/playerctl -p spotify metadata --format \"{{ artist }}\" 2>&1"
     artist = subprocess.run(cmd, shell=True, capture_output=True, text=True).stdout.strip()
 
-    cmd = "/usr/bin/playerctl metadata --format \"{{ title }}\" 2>&1"
+    cmd = "/usr/bin/playerctl -p spotify metadata --format \"{{ title }}\" 2>&1"
     title = subprocess.run(cmd, shell=True, capture_output=True, text=True).stdout.strip()
 
     max_length = 20

@@ -1,3 +1,0 @@
-(defpoll calendar_day :interval "10h" "date '+%d'")
-(defpoll calendar_month :interval "10h" "./backend/main.sh calendar.month")
-(defpoll calendar_year :interval "10h" "date '+%Y'")

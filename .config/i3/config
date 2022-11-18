@@ -109,7 +109,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -191,6 +191,7 @@ mode "resize" {
 }
 
 gaps inner 10
+border_radius 10
 default_border pixel 1
 default_floating_border none
 
@@ -213,8 +214,14 @@ exec_always --no-startup-id feh --bg-fill /usr/share/wallpapers/QuixoticRedDark/
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id eww --restart daemon
 
-bindsym Ctrl+Shift+L exec "betterlockscreen --lock"
+bindsym Ctrl+Shift+L exec "/home/dan/.config/i3/run-lock.sh"
+bindsym Ctrl+Shift+Mod1+L exec "/home/dan/.config/i3/run-lock.sh --no-show-music"
 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="mozc_tool"] floating enable move container to output current
+for_window [class="ibus-ui-emojier-plasma"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
