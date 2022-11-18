@@ -125,7 +125,7 @@ alias trans="trans --engine google"
 alias qemu-aarch64="qemu-aarch64 -L /usr/aarch64-linux-gnu -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib64:/usr/aarch64-linux-gnu/lib"
 
 function gdb() {
-  tmux new "gdb $@ && exit"
+  tmux new "gdb-multiarch $@ && exit"
 }
 
 if [[ $TERM = "xterm-kitty" ]]
