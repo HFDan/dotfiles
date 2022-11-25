@@ -25,7 +25,7 @@ import splitmind
 ).build(nobanner=True)
 end
 set context-code-lines 10
-set context-source-code-lines 100
+set context-source-code-lines 30
 set context-sections regs args disasm stack backtrace code
 set resolve-heap-via-heuristic on
 set debuginfod enabled on

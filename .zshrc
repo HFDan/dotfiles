@@ -123,6 +123,7 @@ alias ip="ip -c"
 alias bat="bat --theme base16-256"
 alias trans="trans --engine google"
 alias qemu-aarch64="qemu-aarch64 -L /usr/aarch64-linux-gnu -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib64:/usr/aarch64-linux-gnu/lib"
+alias imgcat="kitty +kitten icat"
 
 function gdb() {
   tmux new "gdb-multiarch $@ && exit"
