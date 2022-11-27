@@ -28,7 +28,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen --lock
+exec --no-startup-id xss-lock --transfer-sleep-lock -- /usr/lib/kscreenlocker_greet
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -45,11 +45,11 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/.config/i3/volumeNotif  
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym Ctrl+XF86AudioPlay exec playerctl loop track
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym Ctrl+XF86AudioPlay exec playerctl --player=spotify loop track
+bindsym XF86AudioPlay exec playerctl --player=spotify play-pause
+bindsym XF86AudioPause exec playerctl --player=spotify play-pause
+bindsym XF86AudioNext exec playerctl --player=spotify next
+bindsym XF86AudioPrev exec playerctl --player=spotify previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -70,10 +70,10 @@ bindsym $mod+d exec "rofi -show drun"
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# bindsym $mod+j focus left
+# bindsym $mod+k focus down
+# bindsym $mod+l focus up
+# bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -216,8 +216,9 @@ exec_always --no-startup-id feh --bg-fill /usr/share/wallpapers/QuixoticRedDark/
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id eww --restart daemon
 
-bindsym Ctrl+Shift+L exec "/home/dan/.config/i3/run-lock.sh"
-bindsym Ctrl+Shift+Mod1+L exec "/home/dan/.config/i3/run-lock.sh --no-show-music"
+bindsym Ctrl+Shift+L exec "/usr/lib/kscreenlocker_greet"
+bindsym Ctrl+Shift+Mod1+L exec "/usr/lib/kscreenlocker_greet"
+bindsym $mod+L exec "/usr/lib/kscreenlocker_greet"
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
