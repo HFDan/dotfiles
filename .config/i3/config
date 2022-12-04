@@ -193,7 +193,7 @@ mode "resize" {
 }
 
 gaps inner 10
-border_radius 10
+# border_radius 10
 default_border pixel 1
 default_floating_border none
 
@@ -212,7 +212,7 @@ bindsym XF86Launch1 exec supergfxctl -m integrated
 bindsym XF86MonBrightnessUp exec brightnessctl s 10+
 bindsym XF86MonBrightnessDown exec brightnessctl s 10-
 
-exec_always --no-startup-id feh --bg-fill /usr/share/wallpapers/QuixoticRedDark/contents/images/1920x1080.png
+exec_always --no-startup-id feh --bg-fill /home/dan/.local/share/wallpapers/JapaneseStyleGate/contents/images/3840x2160.png
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id eww --restart daemon
 

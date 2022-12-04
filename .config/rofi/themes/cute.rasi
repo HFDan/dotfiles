@@ -1,0 +1,122 @@
+@theme "theme"
+
+
+* {
+  text-color: @fg-col;
+  background-color: @bg-col;
+  font: "Product Sans,Iosevka Nerd Font 12";
+}
+
+window {
+  margin: 0px;
+  border: 5px solid;
+  border-color: #111019;
+  background-color: rgba(11, 10, 16, 0.9);
+  border-radius: 15px;
+}
+
+mainbox {
+  children: [inputbar, mode-switcher, listview];
+  layout: horizontal;
+  spacing: 1.5%;
+}
+
+textbox {
+  width: 2.5em;
+  margin: 1em 0.3em 0 1em;
+  border: 0.1em;
+  border-color: @fg-col2;
+  expand: false;
+  width: 4.4em;
+  height: 4em;
+  text-color: @bg-col-light;
+  background-image: linear-gradient(to right, #008ce3, #a07dde);
+  content: "";
+  font: "Product Sans 12";
+  border-radius: 0.5em;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+}
+
+element-text {
+  vertical-align: 0.5;
+}
+
+element-text selected {
+  color: #f1f0f5;
+  margin: 0px 0px;
+  border: none;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+inputbar {
+  enabled: true;
+  children: [entry];
+}
+
+entry {
+  color: #e2e0ec;
+  background-color: #161420;
+
+   placeholder: "Search...";
+   expand: true;
+   cursor: pointer;
+   margin: 1em 1em 0 0;
+   font: "Product Sans Bold 14";
+   padding: 0.5em;
+   vertical-align: center;
+   border-radius: 0.3em;
+   border: 0.1em;
+}
+
+window {
+  border-radius: 0;
+  width: 600;
+  height: 400;
+  anchor: center;
+  location: center;
+  fullscreen: false;
+}
+
+listview {
+  lines: 3;
+  columns: 1;
+  padding: 0 0.2em 0.2em 0.2em;
+  dynamic: false;
+}
+
+element-icon {
+  size: 2em;
+  vertical-align: 0.5;
+  enabled: true;
+}
+
+element-icon selected {
+  background-color: transparent;
+}
+
+element {
+  orientation: horizontal;
+  children: [ element-icon, element-text ];
+  spacing: 0.2em;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  vertical-align: center;
+}
+
+element selected {
+  /* border: 0.1em; */
+  border-color: @border-col;
+  background-image: linear-gradient(#E97193 ,#f09db5);
+}
+
+mode-switcher {
+  margin: 0 5em 0 5em;
+  border: 0.1em;
+  border-color: @border-col;
+  padding: 0.4em;
+  border-radius: 0.9em;
+}
+
+// vim:filetype=rasi

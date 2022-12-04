@@ -20,7 +20,7 @@ import splitmind
  .above(display="stack", size="80%")
  .above(display="legend", size="25")
  .show("regs", on="legend")
- .below(of="backtrace", cmd="bpython", size="30%")
+ .below(of="backtrace", cmd="ipython", size="30%")
  .above(of="disasm", display="code", banner="none")
 ).build(nobanner=True)
 end
