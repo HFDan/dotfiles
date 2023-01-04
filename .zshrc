@@ -118,7 +118,7 @@ alias weather="curl wttr.in"
 alias vim="nvim"
 alias vi="nvim"
 alias lcear="clear"
-alias watch_disas="watch -n 1 -c -t -x gdb -q -ex \"disas main\" -ex \"quit\""
+alias watch_disas="watch -n 1 -c -t -x /usr/bin/gdb-multiarch -q -ex \"disas main\" -ex \"quit\""
 alias ip="ip -c"
 alias bat="bat --theme base16-256"
 alias trans="trans --engine google"
@@ -146,9 +146,9 @@ eval $(thefuck --alias)
 # Custom commands
 disas() {
 	if [[ $# -eq 1 ]]; then
-		gdb -q -ex "disas main" -ex "quit" ${1}	
+		/usr/bin/gdb-multiarch -q -ex "disas main" -ex "quit" ${1}	
 	else
-		gdb -q -ex "disas ${2}" -ex "quit" ${1}
+		/usr/bin/gdb-multiarch -q -ex "disas ${2}" -ex "quit" ${1}
 	fi
 }
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
