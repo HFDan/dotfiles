@@ -5,7 +5,7 @@ LOCK_FILE="/tmp/$USER-eww-sys.lock"
 EWW_BIN="/usr/bin/eww"
 
 run() {
-    ${EWW_BIN} open dashboard
+    ${EWW_BIN} open dashboard 
 }
 
 # Run eww daemon if not running

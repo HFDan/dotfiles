@@ -1,12 +1,13 @@
 {
     "position": "top",
     "layer": "top",
+    "output": ["e-Dp-1", "DP-3"],
     "height": 50,
     "fixed-center": true,
     "mode": "dock",
     "modules-left": ["tray"],
     "modules-center": ["custom/dashboard"],
-    "modules-right": ["idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "clock"],
+    "modules-right": ["custom/swww", "idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "clock"],
     "wlr/workspaces": {
         "format": "{name}",
         "on-click": "activate",
@@ -18,8 +19,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "Don't idle",
-            "deactivated": "Idling"
+            "activated": "アイドル状態ありません",
+            "deactivated": "アイドル状態"
         }
     },
     "custom/dashboard": {
@@ -27,19 +28,24 @@
         "on-click": "~/.config/eww/open.sh",
         "tooltip": false
     },
+    "custom/swww": {
+        "format": "󰘻",
+        "on-click": "~/.config/waybar/next_wall.sh",
+        "tooltip": false
+    },
     "tray": {
         "spacing": 10
     },
     "clock": {
-        "format": "{:%H:%M:%S %d.%m.%Y}",
+        "format": "{:%H:%M:%S %Y年%m月%d日}",
         "interval": 1
     },
     "pulseaudio": {
         "scroll-step": 1,
-        "format": "Volume: {volume}%",
-        "format-bluetooth": "Volume: {volume}% (BT)",
-        "format-bluetooth-muted": "Volume: {icon} (BT)",
-        "format-muted": "Vol: {volume}%",
+        "format": "ボリューム: {volume}%",
+        "format-bluetooth": "ボリューム: {volume}% (BT)",
+        "format-bluetooth-muted": "ボリューム: {icon} (BT)",
+        "format-muted": "ボリューム: {volume}%",
         "on-click": "pavucontrol-qt"
     },
     "cpu": {

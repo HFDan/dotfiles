@@ -205,5 +205,6 @@
                       :anchor "center top")
   :wm-ignore false
   :stacking "fg"
-  :windowtype "normal"
+  :windowtype "dock"
+  :monitor 1
 (dashboard))
