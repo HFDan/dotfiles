@@ -1,7 +1,7 @@
 {
     "position": "top",
     "layer": "top",
-    "output": ["e-Dp-1", "DP-3"],
+    "output": ["eDP-1", "DP-3"],
     "height": 50,
     "fixed-center": true,
     "mode": "dock",
