@@ -130,8 +130,7 @@ function gdb() {
   tmux new "gdb-multiarch $@ && exit"
 }
 
-if [[ $TERM = "xterm-kitty" ]]
-then
+if [[ $TERM = "xterm-kitty" ]]; then
 	alias ssh="kitty +kitten ssh"
 fi
 alias slk="sherlock"
@@ -144,7 +143,7 @@ export PULSEMIXER_BAR_STYLE="╭╶╮╴╰╯⏹◇· ──"
 eval $(thefuck --alias)
 
 # Custom commands
-disas() {
+function disas() {
 	if [[ $# -eq 1 ]]; then
 		/usr/bin/gdb-multiarch -q -ex "disas main" -ex "quit" ${1}	
 	else
@@ -152,3 +151,18 @@ disas() {
 	fi
 }
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
+function ncode() {
+    local filename=${1##*/}
+    local TMPFILE="$(mktemp)\$${filename}"
+    /usr/bin/curl -sSL ${1} -o ${TMPFILE} &&
+    /usr/bin/code -w ${TMPFILE} ${@:2} &&
+    rm ${TMPFILE}
+}
+
+function ba() {
+  local container="blackarch"
+  if [[ ! -z $1 ]]; then
+    container=$1
+  fi
+  /usr/bin/docker exec -it ${container} /bin/zsh
+}

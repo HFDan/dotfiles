@@ -46,9 +46,9 @@ def main():
     if playerstat == PlayerStatus.NOPLAYER:
         outstring = "No music playing :("
     elif playerstat == PlayerStatus.PAUSED:
-        outstring = f" {get_current_playing_song().artist} - {get_current_playing_song().name}"
+        outstring = f"󰎆 {get_current_playing_song().artist} - {get_current_playing_song().name}"
     elif playerstat == PlayerStatus.PLAYING:
-        outstring = f" {get_current_playing_song().artist} - {get_current_playing_song().name}"
+        outstring = f"󰎆  {get_current_playing_song().artist} - {get_current_playing_song().name}"
 
     print(outstring)
 

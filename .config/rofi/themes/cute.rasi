@@ -108,7 +108,7 @@ element {
 element selected {
   /* border: 0.1em; */
   border-color: @border-col;
-  background-image: linear-gradient(#E97193 ,#f09db5);
+  background-color: #eca7a2;
 }
 
 mode-switcher {

@@ -4,7 +4,7 @@ set pagination off
 set disassembly-flavor intel
 set print asm-demangle on
 set history remove-duplicates 10
-set history filename "~/.gdb_history"
+set history filename ".gdb_history"
 set history size unlimited
 
 source /home/dan/splitmind/gdbinit.py

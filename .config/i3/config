@@ -204,7 +204,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 # exec_always --no-startup-id plank &
 exec_always --no-startup-id dunst &
-exec_always --no-startup-id picom --config ~/.config/picom.conf -b --experimental-backends
+exec_always --no-startup-id picom --config ~/.config/picom.conf -b
 bindsym XF86KbdBrightnessDown exec brightnessctl --device='asus::kbd_backlight' set 1-
 bindsym XF86KbdBrightnessUp exec brightnessctl --device='asus::kbd_backlight' set 1+
 bindsym XF86Launch4 exec asusctl profile -n
