@@ -1,0 +1,88 @@
+{
+    "position": "top",
+    "layer": "top",
+    "height": 50,
+    "fixed-center": true,
+    "mode": "dock",
+    "modules-left": ["tray"],
+    "modules-center": ["custom/dashboard"],
+    "modules-right": ["idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "clock"],
+    "wlr/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "Don't idle",
+            "deactivated": "Idling"
+        }
+    },
+    "custom/dashboard": {
+        "format": "⌄",
+        "on-click": "~/.config/eww/open.sh",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%H:%M:%S %d.%m.%Y}",
+        "interval": 1
+    },
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "Volume: {volume}%",
+        "format-bluetooth": "Volume: {volume}% (BT)",
+        "format-bluetooth-muted": "Volume: {icon} (BT)",
+        "format-muted": "Vol: {volume}%",
+        "on-click": "pavucontrol-qt"
+    },
+    "cpu": {
+        "format": "CPU: {usage}%",
+        "interval": 1
+    },
+    "memory": {
+        "format": "RAM: {}%",
+        "interval": 1
+    },
+    "custom/absclock": {
+        "exec": "date +%s",
+        "return-type": "{}",
+        "format": "{}",
+        "interval": 1
+    },
+    "custom/loadavg": {
+        "exec": "cat /proc/loadavg | head -c 14",
+        "return-type": "{}",
+        "format": "Load average: {}",
+        "interval": 1
+    },
+    "custom/uptime": {
+        "exec": "uptime -p | sed 's/up //g' -",
+        "return-type": "{}",
+        "format": "Uptime: {}",
+        "interval": 60,
+    },
+    "temperature": {
+        "format": "Temperature: {temperatureC}°C",
+        "interval": 1
+    },
+    "battery": {
+        "format": "Battery: {capacity}%",
+        "format-charging": "Battery: {capacity}% (charging)",
+        "format-plugged": "Battery: {capacity}% (plugged)",
+        "interval": 10
+    },
+    "network": {
+        "format": "Network via {ifname}",
+        "tooltip-format": "{ipaddr}/{cidr}",
+        "format-linked": "Network (No IP) via {ifname}",
+        "format-disconnected": "No network",
+        "on-click": "nm-connection-editor"
+    },
+}

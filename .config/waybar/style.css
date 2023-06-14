@@ -1,0 +1,75 @@
+@import "macchiato.css";
+* {
+    font-family: "Product Sans", "JetBrainsMono Nerd Font", "Noto Sans";
+    font-size: 13pt;
+    border: none;
+    border-radius: 0;
+    font-weight: 400;
+    padding: 1px 1px;
+}
+
+window#waybar {
+    color: transparent;
+    background: @base;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 8px;
+}
+
+#workspaces {
+    transition: none;
+    color: @text;
+}
+
+#workspaces button {
+}
+
+button:hover {
+    color: @red;
+    background-color: @surface1;
+}
+
+#workspaces button.focused {
+    color: @yellow;
+    background-color: @mantle;
+}
+
+#workspaces button.urgent {
+    background-color: @pink;
+}
+#mode {
+    background-color: @mantle;
+}
+
+.modules-right, .modules-center {
+    transition: none;
+    background: @base;
+    color: @text;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#language, #custom-dashboard, #clock, #battery, #cpu, #memory, #disk, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor, #mpd, #custom-loadavg, #custom-uptime {
+    padding: 0 8px;
+}
+
+#window {
+    color: transparent;
+    background-color: transparent;
+}
+
+#battery.critical:not(.charging) {
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#language {
+    padding: 0 4px;
+    min-width: 16px;
+}
