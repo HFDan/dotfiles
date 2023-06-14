@@ -127,7 +127,7 @@ alias imgcat="kitty +kitten icat"
 alias tree="exa --tree --icons"
 
 function gdb() {
-  tmux new "gdb-multiarch $@ && exit"
+  tmux new "/bin/gdb $@ && exit"
 }
 
 if [[ $TERM = "xterm-kitty" ]]; then
@@ -145,12 +145,13 @@ eval $(thefuck --alias)
 # Custom commands
 function disas() {
 	if [[ $# -eq 1 ]]; then
-		/usr/bin/gdb-multiarch -q -ex "disas main" -ex "quit" ${1}	
+		/usr/bin/gdb -q -ex "disas main" -ex "quit" ${1}	
 	else
-		/usr/bin/gdb-multiarch -q -ex "disas ${2}" -ex "quit" ${1}
+		/usr/bin/gdb -q -ex "disas ${2}" -ex "quit" ${1}
 	fi
 }
 function gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}
+
 function ncode() {
     local filename=${1##*/}
     local TMPFILE="$(mktemp)\$${filename}"
