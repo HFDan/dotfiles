@@ -197,12 +197,13 @@
 )
 
 (defwindow dashboard
+  :monitor 0
   :geometry (geometry :x "0px"
                       :y "55px"
                       :width "600"
                       :height "500px"
                       :anchor "center top")
-  :wm-ignore true
+  :wm-ignore false
   :stacking "fg"
   :windowtype "normal"
 (dashboard))
