@@ -12,8 +12,8 @@
             :orientation "v" :space-evenly "false" :spacing 0
             (label :class "weicon" :text "${wicon}")
             (label :class "wereport" :text "${wdesc}")
-            (label :class "wetemp" :text "It's ${wtemp} out")
-            (label :class "wehumid" :text "Humidity is at ${whumid}%")
+            (label :class "wetemp" :text "外気温は${wtemp}")
+            (label :class "wehumid" :text "湿度は${whumid}%")
         )
         (box :class "calendar-box"
              :orientation "h"
@@ -110,7 +110,7 @@
         (box :class "system-control"
              :orientation "v"
              :space-evenly false
-          (label :text "Controls"
+          (label :text "コントロール"
                  :class "label"
                  :halign "start")
           (box :class "sliders-box"
@@ -144,7 +144,7 @@
         (box :class "system-stats"
              :orientation "v"
              :space-evenly false
-          (label :text "Stats"
+          (label :text "統計"
                  :class "label"
                  :halign "start")
           (box :class "sliders-box"
@@ -197,7 +197,6 @@
 )
 
 (defwindow dashboard
-  :monitor 0
   :geometry (geometry :x "0px"
                       :y "55px"
                       :width "600"

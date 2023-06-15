@@ -12,6 +12,7 @@ wallpapers=(
   "/home/dan/.local/share/wallpapers/Nishikigi-Chisato/3840x2160.png"
   "/home/dan/.local/share/wallpapers/Oni-Shoujo-1/3840x2160.png"
   "/home/dan/.local/share/wallpapers/Oni-Shoujo-3/3840x2160.png"
+  "/home/dan/.local/share/wallpapers/Jigoku-shoujo/7680x4320.jpg"
 )
 
 function set() {

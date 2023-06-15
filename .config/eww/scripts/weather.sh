@@ -37,11 +37,11 @@ check_if_empty_text() {
 	if [ -z "$1" ]; then
 		echo "Disconnected"
 	elif [ "$1" = "Clouds" ]; then
-		echo "It's Cloudy"
+		echo "曇りです"
 	elif [ "$1" = "Clear" ]; then
-		echo "It's Clear"
+		echo "晴れです"
 	elif [ "$1" = "Rain" ]; then
-		echo "It's Rainy"
+		echo "雨です"
 	else
 		echo $1
 	fi

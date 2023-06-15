@@ -5,11 +5,12 @@
 *
 */
 
-@define-color base   #24273a;
+@define-color base   rgba(36, 39, 58, 0.8);
 @define-color mantle #1e2030;
 @define-color crust  #181926;
 
-@define-color text     #cad3f5;
+/* @define-color text     #cad3f5; */
+@define-color text     #e5ebff;
 @define-color subtext0 #a5adcb;
 @define-color subtext1 #b8c0e0;
 
