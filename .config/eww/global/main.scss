@@ -1,5 +1,6 @@
 * {
   all: unset;
+  font-family: Product Sans, Noto Sans CJK JP;
 }
 
 .hide {
@@ -12,4 +13,14 @@
   &:active {
     background-color: transparent;
   }
+}
+
+tooltip.background {
+  font-size: 1rem;
+  border-radius: 20px;
+  color: #b6beca;
+}
+
+tooltip label {
+  margin: 6px;
 }

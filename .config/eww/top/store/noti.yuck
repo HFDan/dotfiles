@@ -1,0 +1,3 @@
+(deflisten notificationsCards "scripts/logger.zsh subscribe")
+(defpoll notificationsCrits :interval "1s" "scripts/logger.zsh crits")
+(defpoll notificationNum :interval "1s" "scripts/logger.zsh tot")

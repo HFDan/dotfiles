@@ -6,3 +6,4 @@
 (include "top/calendar/calendar.yuck")
 (include "top/dashboard/dashboard.yuck")
 (include "lockscreen/lockscreen.yuck")
+(include "notifwidget/noti.yuck")

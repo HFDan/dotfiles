@@ -16,6 +16,7 @@ get_song_art () {
     curl -s "$artlink" --output $tmp_temp_path
   else
     cp $HOME/.config/eww/assets/fallback.png $tmp_temp_path
+    artlink="notfound"
   fi
 
   # an epic effekt
@@ -23,11 +24,14 @@ get_song_art () {
 
   cp $tmp_temp_path $tmp_albumart_path
 
-  convert $tmp_temp_path -gravity center +repage -alpha set -channel A \
-      -sparse-color Barycentric '%[fx:w+0.5],0 opaque   %[fx:w*2/32],0 transparent' \
-    -evaluate multiply 0.5 \
-      $tmp_temp_path
-  convert $tmp_temp_path -blur 0x8 $tmp_cover_path
+  if [[ ! $artlink == $(cat ${tmp_dir}/lastart.txt) ]]; then
+      convert $tmp_temp_path -gravity center +repage -alpha set -channel A \
+          -sparse-color Barycentric '%[fx:w+0.5],0 opaque   %[fx:w*2/32],0 transparent' \
+        -evaluate multiply 0.5 \
+          $tmp_temp_path
+      convert $tmp_temp_path -blur 0x8 $tmp_cover_path
+      echo -ne "${artlink}" > ${tmp_dir}/lastart.txt
+  fi
 }
 
 echo_song_art_url () {

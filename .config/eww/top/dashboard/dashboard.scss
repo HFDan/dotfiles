@@ -1,10 +1,10 @@
 $radius: 20px;
 
 .dashboard {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: $fg;
   border-radius: $radius;
-  font-family: Product Sans;
+  font-family: Product Sans, Noto Sans CJK JP, JetBrainsMonoNL Nerd Font Mono;
   font-size: 14px;
   .container {
     padding: 5px;
@@ -31,7 +31,7 @@ $radius: 20px;
     }
   }
   .buttons {
-    font-family: Iosevka Nerd Font;
+    font-family: JetBrainsMonoNL Nerd Font Mono;
     .close {
       transition: all ease 0.2s;
       color: $red;
@@ -61,6 +61,7 @@ $radius: 20px;
     font-weight: bold;
     margin: -93 0 0 70;
     font-size: 2.5rem;
+    text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.65);
   }
   .wetemp {
     color: $green;
@@ -69,7 +70,7 @@ $radius: 20px;
   }
   .wehumid {
     margin-top: 10px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: $blue;
   }
 }
@@ -86,7 +87,14 @@ $radius: 20px;
   margin-top: 10px;
   background-color: $contrastbg;
   border-radius: $radius;
-  font-family: Iosevka Nerd Font;
+  font-family: JetBrainsMonoNL Nerd Font Mono;
+  button {
+    transition: background-color 0.5s;
+    border-radius: $radius;
+  }
+  button:hover {
+    background-color: hsl(226, 100%, 95%);
+  }
   .widget {
     transition: all ease 0.2s;
     &.deactivated {
@@ -112,7 +120,7 @@ $radius: 20px;
 .music {
   background-color: transparent;
   color: $fg;
-  font-family: Product Sans;
+  font-family: Product Sans, Noto Sans CJK JP;
   font-size: 14px;
   margin-top: 10px;
 
@@ -132,7 +140,7 @@ $radius: 20px;
         margin-right: 0px;
         color: $cyan;
       }
-      
+
       & scale trough {
         all: unset;
         border-radius: 10px;
@@ -194,12 +202,12 @@ $radius: 20px;
       font-weight: bold;
       font-size: 1.3rem;
       margin-bottom: 5px;
-      text-shadow: 2px 3px 4px rgba(0,0,0,0.65);
+      text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.65);
     }
     .music-artist {
       margin-top: 30px;
       font-size: 1.2rem;
-      text-shadow: 2px 3px 4px rgba(0,0,0,0.65);
+      text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.65);
     }
 
     .picture {
@@ -212,7 +220,7 @@ $radius: 20px;
 
       .testpic {
         min-height: 160px;
-        min-width: 160px;
+        min-width: 190px;
         border-radius: 10px;
         background-size: 100% 100%;
         background-position: center;
@@ -226,14 +234,24 @@ $radius: 20px;
   }
 
   .controls {
+    button {
+      transition: background-color 0.5s, color 0.5s;
+      border-radius: $radius;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    button:hover {
+      background-color: hsl(226, 100%, 95%);
+      color: $contrastbg;
+    }
     background-color: $contrastbg;
     border-radius: $radius;
     font-family: Iosevka Nerd Font;
     font-size: 20px;
     margin: 0px 0px 0px 10px;
-    padding: 9px 20px;
+    padding: 9px 0px;
+    min-width: 70px;
     .pause {
-      padding: 5px 7px 4px 2px;
       font-size: 16px;
     }
   }
@@ -320,9 +338,9 @@ $radius: 20px;
     .sliders-box {
       .cpu-slider {
         .cpu-label {
-          font-size: 20px;
+          font-size: 30px;
           font-family: Iosevka Nerd Font;
-          margin-right: 15px;
+          margin-right: 7px;
           color: $red;
         }
         & scale trough {
@@ -378,6 +396,11 @@ $radius: 20px;
   .label {
     font-size: 1.3rem;
     padding: 3px 0px 6px 0px;
+  }
+
+  .symbol {
+    color: $cyan;
+    font-size: 1.3rem;
   }
 }
 

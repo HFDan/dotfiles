@@ -72,6 +72,14 @@ button:hover {
   padding: 0 8px;
 }
 
+#custom-notiftray {
+  font-size: 20pt;
+}
+
+#custom-notiftray button:hover {
+  background-color: @surface2;
+}
+
 #window {
   color: transparent;
   background-color: transparent;

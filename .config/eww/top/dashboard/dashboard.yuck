@@ -46,7 +46,7 @@
                     :class "prev"
                     :onclick "backend/main.sh music.control prev"
                     :tooltip "Go to the previous music"
-              "玲"
+              "󰒮"
             )
             (button :valign "center"
                     :class "pause"
@@ -58,7 +58,7 @@
                     :class "next"
                     :onclick "backend/main.sh music.control next"
                     :tooltip "Go to the next music"
-              "怜"
+              "󰒭"
             )
           )
 
@@ -73,7 +73,7 @@
                    :text "墳"
                    :xalign 0.5
             )
-            (scale :value music_vol 
+            (scale :value music_vol
                    :onchange "backend/main.sh music.volume {}"
                    :min 0
                    :max 101
@@ -95,7 +95,7 @@
           (button :class "reboot"
                   :tooltip "Reboot"
                   :onclick "reboot"
-            "勒"
+            "󰑓"
           )
           (button :class "logout"
                   :tooltip "Logout"
@@ -155,7 +155,7 @@
                  :orientation "h"
                  :space-evenly "false"
               (box :class "cpu-label"
-                   "")
+                   "󰻠")
               (scale :value cpu
                      :active false
                      :min 0
@@ -166,7 +166,7 @@
                  :orientation "h"
                  :space-evenly "false"
               (box :class "ram-label"
-                   "")
+                   "")
               (scale :value ram
                      :active false
                      :min 0
@@ -183,13 +183,16 @@
                :orientation "v"
                :space-evenly false
 
-            (label :text "Updates"
+            (box :halign "start" :orientation "h" :space-evenly false
+              (label :text "󰇚 "
+                     :class "symbol")
+              (label :text "アップデート"
+                     :class "label")
+            )
+
+            (label :text "アップデートは${avail_updates}件あります"
                    :class "label"
-                   :halign "start")
-                   
-            (label :text "There are ${avail_updates} updates available"
-                   :class "label"
-                   :halign "center")       
+                   :halign "center")
           )
       )
     )
@@ -198,7 +201,7 @@
 
 (defwindow dashboard
   :geometry (geometry :x "0px"
-                      :y "55px"
+                      :y "20px"
                       :width "600"
                       :height "500px"
                       :anchor "center top")

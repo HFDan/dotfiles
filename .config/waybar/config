@@ -7,7 +7,7 @@
     "mode": "dock",
     "modules-left": ["tray"],
     "modules-center": ["custom/dashboard"],
-    "modules-right": ["custom/swww", "cava", "idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "clock"],
+    "modules-right": ["custom/swww", "cava", "idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "clock", "custom/notiftray"],
     "wlr/workspaces": {
         "format": "{name}",
         "on-click": "activate",
@@ -32,7 +32,7 @@
         "framerate": 60,
         "autosens": 1,
         "sensitivity": 100,
-        "bars": 20,
+        "bars": 15,
         "lower_cutoff_freq": 50,
         "higher_cutoff_freq": 10000,
         "method": "pulse",
@@ -52,6 +52,11 @@
     "custom/swww": {
         "format": " 󰘻 ",
         "on-click": "~/.config/waybar/next_wall.sh",
+        "tooltip": false
+    },
+    "custom/notiftray": {
+        "format": "  ",
+        "on-click": "/usr/bin/eww open notification --toggle",
         "tooltip": false
     },
     "tray": {
