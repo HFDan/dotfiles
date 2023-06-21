@@ -6,7 +6,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
- font_family      JetBrainsMono Nerd Font
+ font_family       JetBrainsMono Nerd Font Mono
 # bold_font        auto
 # italic_font      auto
 # bold_italic_font auto
@@ -81,7 +81,7 @@
 
 #:     symbol_map codepoints Font Family Name
 
-# disable_ligatures never
+disable_ligatures cursor
 
 #: Choose how you want to handle multi-character ligatures. The
 #: default is to always render them.  You can tell kitty to not render
@@ -2022,6 +2022,6 @@
 
 
 # BEGIN_KITTY_THEME
-# Gruvbox Dark Hard
-include quixotic.conf
+# Quixotic
+include current-theme.conf
 # END_KITTY_THEME

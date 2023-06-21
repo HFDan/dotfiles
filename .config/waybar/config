@@ -5,13 +5,14 @@
     "height": 50,
     "fixed-center": true,
     "mode": "dock",
-    "modules-left": ["tray"],
+    "modules-left": ["tray", "wlr/workspaces"],
     "modules-center": ["custom/dashboard"],
     "modules-right": ["custom/swww", "cava", "idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "clock", "custom/notiftray"],
     "wlr/workspaces": {
         "format": "{name}",
         "on-click": "activate",
-        "sort-by-number": true
+        "sort-by-number": true,
+        "all-outputs": true
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -63,9 +64,9 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%H:%M:%S %Y年%m月%d日}",
+        "format": "{:%I:%M %p %Y年%m月%d日}",
         "interval": 1,
-        "max-length": 18
+        "max-length": 20
     },
     "pulseaudio": {
         "scroll-step": 1,
