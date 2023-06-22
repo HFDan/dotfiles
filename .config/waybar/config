@@ -5,7 +5,7 @@
     "height": 50,
     "fixed-center": true,
     "mode": "dock",
-    "modules-left": ["tray", "wlr/workspaces"],
+    "modules-left": ["tray", "wlr/workspaces", "mpris"],
     "modules-center": ["custom/dashboard"],
     "modules-right": ["custom/swww", "cava", "idle_inhibitor", "cpu", "memory", "pulseaudio", "battery", "clock", "custom/notiftray"],
     "wlr/workspaces": {
@@ -28,6 +28,20 @@
         "format": "⌄",
         "on-click": "~/.config/eww/open.sh",
         "tooltip": false
+    },
+    "mpris": {
+        "format": "{player_icon} {title} - {artist}",
+        "format-paused": "{status_icon} {title} - {artist}",
+        "player-icons": {
+            "default": "󰐊 ",
+            "spotify": " "
+        },
+        "status-icons": {
+            "paused": "  "
+        },
+        "ignored-players": [
+            "firefox"
+        ]
     },
     "cava": {
         "framerate": 60,

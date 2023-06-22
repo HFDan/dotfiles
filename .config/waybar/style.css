@@ -55,6 +55,14 @@ window#waybar {
   border: solid 0px #f4d9e1;
 }
 
+#mpris {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 #custom-date {
   color: #d3869b;
 }
@@ -72,16 +80,15 @@ window#waybar {
 
 #tray {
   background: #282828;
-  margin: 5px 5px 5px 5px;
-  border-radius: 16px;
-  padding: 0px 5px;
-  /*border-right: solid 1px #282738;*/
+  margin-right: 5px;
+  border-bottom-right-radius: 25px;
+  padding: 0px 15px;
 }
 
 #clock {
   color: #e6b9c6;
   background-color: #282828;
-  border-radius: 0px 0px 0px 30px;
+  border-radius: 0px 0px 0px 25px;
   padding-left: 13px;
   padding-right: 15px;
   margin-right: 0px;
@@ -97,7 +104,6 @@ window#waybar {
   color: #e6b9c6;
   padding-right: 15px;
   font-size: 1.3rem;
-  border-bottom-right-radius: 30px;
 }
 
 #battery {
