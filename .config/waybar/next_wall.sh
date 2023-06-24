@@ -13,6 +13,9 @@ wallpapers=(
   "/home/dan/.local/share/wallpapers/Oni-Shoujo-1/3840x2160.png"
   "/home/dan/.local/share/wallpapers/Oni-Shoujo-3/3840x2160.png"
   "/home/dan/.local/share/wallpapers/Jigoku-shoujo/7680x4320.jpg"
+  "/home/dan/.local/share/wallpapers/Anime-Girl-1/3840x2494.png"
+  "/home/dan/.local/share/wallpapers/Empty-Room/1366x768.png"
+  "/home/dan/.local/share/wallpapers/Rainy-Evening/1920x1080.jpg"
 )
 
 function set() {

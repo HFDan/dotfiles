@@ -104,6 +104,7 @@ window#waybar {
   color: #e6b9c6;
   padding-right: 15px;
   font-size: 1.3rem;
+  font-weight: bolder;
 }
 
 #battery {
@@ -163,6 +164,10 @@ window#waybar {
   padding: 0 20px 0 13px;
   /*border-right: solid 1px #282738;*/
   font-size: 20px;
+}
+
+#custom-dashboard {
+  font-size: 1.5rem;
 }
 
 #custom-launcher button:hover {

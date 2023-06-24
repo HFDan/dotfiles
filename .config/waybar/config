@@ -25,7 +25,7 @@
         }
     },
     "custom/dashboard": {
-        "format": "⌄",
+        "format": " 󰅀 ",
         "on-click": "~/.config/eww/open.sh",
         "tooltip": false
     },
@@ -70,7 +70,7 @@
         "tooltip": false
     },
     "custom/notiftray": {
-        "format": "  ",
+        "format": "  ",
         "on-click": "/usr/bin/eww open notification --toggle",
         "tooltip": false
     },
