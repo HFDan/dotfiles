@@ -16,6 +16,7 @@ wallpapers=(
   "/home/dan/.local/share/wallpapers/Anime-Girl-1/3840x2494.png"
   "/home/dan/.local/share/wallpapers/Empty-Room/1366x768.png"
   "/home/dan/.local/share/wallpapers/Rainy-Evening/1920x1080.jpg"
+  "/home/dan/.local/share/wallpapers/W_animated/1920x1080.gif"
 )
 
 function set() {
