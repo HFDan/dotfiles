@@ -120,30 +120,32 @@ const Player = (player: MprisPlayer) => {
         child: Widget.Icon(icons.mpris.next),
     })
 
-    return Widget.Box(
-        { class_name: "player", vexpand: false },
-        cover,
-        Widget.Box(
-            { vertical: true },
-            Widget.Box([
-                title,
-                playericon,
-            ]),
-            artist,
-            Widget.Box({ vexpand: true }),
-            positionSlider,
-            Widget.CenterBox({
-                class_name: "footer horizontal",
-                start_widget: positionLabel,
-                center_widget: Widget.Box([
-                    prev,
-                    playPause,
-                    next,
+    if (player.name != "playerctld") {
+        return Widget.Box(
+            { class_name: "player", vexpand: false },
+            cover,
+            Widget.Box(
+                { vertical: true },
+                Widget.Box([
+                    title,
+                    playericon,
                 ]),
-                end_widget: lengthLabel,
-            }),
-        ),
-    )
+                artist,
+                Widget.Box({ vexpand: true }),
+                positionSlider,
+                Widget.CenterBox({
+                    class_name: "footer horizontal",
+                    start_widget: positionLabel,
+                    center_widget: Widget.Box([
+                        prev,
+                        playPause,
+                        next,
+                    ]),
+                    end_widget: lengthLabel,
+                }),
+            ),
+        )
+    }
 }
 
 export const Media = () => Widget.Box({

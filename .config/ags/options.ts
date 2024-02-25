@@ -78,8 +78,8 @@ const options = mkOptions(OPTIONS, {
                 "systray",
                 "colorpicker",
                 "screenrecord",
-                "system",
                 "battery",
+                "system",
                 "powermenu",
             ]),
         },
@@ -119,7 +119,6 @@ const options = mkOptions(OPTIONS, {
         systray: {
             ignore: opt([
                 "KDE Connect Indicator",
-                "spotify-client",
             ]),
         },
         media: {
@@ -141,11 +140,7 @@ const options = mkOptions(OPTIONS, {
         maxItem: opt(6),
         favorites: opt([
             [
-                "firefox",
-                "org.gnome.Nautilus",
-                "org.gnome.Calendar",
-                "obsidian",
-                "discord",
+                "firefox-developer-edition",
                 "spotify",
             ],
         ]),
@@ -153,7 +148,7 @@ const options = mkOptions(OPTIONS, {
 
     overview: {
         scale: opt(9),
-        workspaces: opt(7),
+        workspaces: opt(10),
         monochromeIcon: opt(true),
     },
 

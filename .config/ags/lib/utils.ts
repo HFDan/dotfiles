@@ -57,6 +57,14 @@ export function forMonitors(widget: (monitor: number) => Gtk.Window) {
     return range(n, 0).map(widget).flat(1)
 }
 
+export function onDefaultMonitor(widget: (monitor: number) => Gtk.WIndow) {
+    const n = Gdk.Display.get_default().get_n_monitors()
+    if (n == 1)
+        return widget(0)
+
+    return widget(1)
+}
+
 /**
  * @returns [start...length]
  */
