@@ -1,0 +1,13 @@
+(defwidget media []
+  (box
+    :orientation "v"
+    :halign "start"
+    :valign "start"
+    (label :xalign 0.5 :text "Media goes here")))
+
+(defwindow media
+  :monitor 0
+  :stacking "bg"
+  :focusable "false"
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :anchor "bottom left")
+  (media))

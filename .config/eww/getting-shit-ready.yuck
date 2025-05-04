@@ -1,0 +1,38 @@
+(defpoll message
+    :interval "100s"
+    :initial "0"
+    `./random_text.sh`
+)
+
+(defwidget getting-shit-ready []
+  (overlay
+    (transform
+        :translate-x "80%"
+        :translate-y "35%"
+        :valign "fill"
+        :halign "fill"
+        (label :xalign 0 :text "Powered by hyprland")
+    )
+    (box
+      :orientation "v"
+      :halign "fill"
+      :valign "center"
+      (image :image-width 64 :image-height 64 :path "./loading64.gif")
+      (label :xalign 0.5 :text "${message}")
+    )
+  )
+)
+
+(defwindow getting-shit-ready-1
+  :monitor 0
+  :stacking "overlay"
+  :focusable false
+  :geometry (geometry :x "0px" :y "0px" :width "120%" :height "120%" :anchor "center")
+  (getting-shit-ready))
+
+(defwindow getting-shit-ready-2
+  :monitor 1
+  :stacking "overlay"
+  :focusable false
+  :geometry (geometry :x "0px" :y "0px" :width "120%" :height "120%" :anchor "center")
+  (getting-shit-ready))
