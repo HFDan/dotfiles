@@ -1,13 +1,109 @@
+(deflisten
+    song_name
+    :initial "n/a"
+    `playerctl --follow metadata --format {{title}}`
+)
+
+(deflisten
+    artist_name
+    :initial "n/a"
+    `playerctl --follow metadata --format {{artist}}`
+)
+
+(deflisten
+    song_pos
+    :initial "n/a"
+    `playerctl --follow metadata --format "{{duration(position)}}"`
+)
+
+(deflisten
+    song_duration
+    :initial "n/a"
+    `playerctl --follow metadata --format "{{duration(mpris:length)}}"`
+)
+
+(deflisten
+    song_status
+    :initial ""
+    `playerctl --follow metadata --format "{{status}}"`
+)
+
 (defwidget media []
   (box
-    :orientation "v"
-    :halign "start"
+    :orientation "h"
+    :halign "fill"
     :valign "start"
-    (label :xalign 0.5 :text "Media goes here")))
+
+    (box
+      :orientation "v"
+      :halign "start"
+      :valign "center"
+      (label :class "song_name" :xalign 0 :text "${song_name}")
+      (label :class "artist_name" :xalign 0 :text "${artist_name}")
+    )
+
+    (box
+      :orientation "h"
+      :halign "center"
+      :valign "center"
+      :class "controls"
+      (button
+        :halign "center"
+        :valign "center"
+        :onclick "playerctl previous"
+        (label :text "󰒮")
+      )
+      (button
+        :halign "center"
+        :valign "center"
+        :onclick "playerctl play-pause"
+        (label :text "${song_status == 'Playing' ? '' : '' }")
+      )
+      (button
+        :halign "center"
+        :valign "center"
+        :onclick "playerctl next"
+        (label :text "󰒭")
+      )
+    )
+
+    (box
+      :orientation "h"
+      :halign "end"
+      :valign "center"
+      (box
+        :orientation "h"
+        :halign "end"
+        :class "duration"
+        (label :halign "end" :style "min-width: 40px" :text "${song_pos}")
+        (label :halign "end" :style "min-width: 30px" :text "/")
+        (label :halign "end" :style "min-width: 40px" :text "${song_duration}")
+      )
+      (button
+        :halign "end"
+        :valign "center"
+        (label :halign "center" :text "")
+      )
+    )
+  )
+)
+
+(defpoll
+  show_media
+  :interval "1s"
+  `./check_media.sh`
+)
 
 (defwindow media
   :monitor 0
-  :stacking "bg"
+  :stacking "bottom"
   :focusable "false"
-  :geometry (geometry :x "0px" :y "0px" :width "100%" :anchor "bottom left")
-  (media))
+  :namespace "eww_media"
+  :geometry (geometry :x "30%" :y "20px" :width "70%" :anchor "bottom center")
+  (revealer
+    :transition "slideup"
+    :reveal show_media
+    :duration "200ms"
+    (media)
+  )
+)

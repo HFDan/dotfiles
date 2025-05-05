@@ -5,6 +5,7 @@
         background: none;
     }
 }
+
 @keyframes pulse {
     0% {
         background: radial-gradient(#222436, black);
@@ -18,13 +19,13 @@
 }
 
 .activate-linux {
-    color: rgba(250, 250, 250, 0.5);
+    color: rgba(250, 250, 250, 0.6);
     text-shadow: 2px 5px 50px rgba(0, 0, 0, 0.2);
 }
 
 .clock {
     color: rgba(250, 250, 250, 1);
-    opacity: 0.7;
+    opacity: 0.9;
     font-size: 5rem;
     font-weight: bold;
     text-shadow:
@@ -52,9 +53,56 @@
 
 .media {
     &.background {
-        color: #ff0000;
+        background: rgba(16, 18, 23, 0.6);
+        border-radius: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
     }
-    label {
-        padding: 20px;
+
+    button {
+        border-radius: 100%;
+        margin: 0px 0.3rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: #2e2e2e;
+        transition: all 0.4s ease-in-out;
+
+        &:hover {
+            background: radial-gradient(#2e2e2e, lighten(#2e2e2e, 10%));
+        }
     }
+
+    .controls {
+        label {
+            font-size: 1.3rem;
+            min-width: 20px;
+            min-height: 20px;
+        }
+    }
+
+    .duration {
+        label {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+
+    .song_name {
+        text-shadow:
+            0px 0px 10px rgba(0, 0, 0, 0.5),
+            0px 0px 3px white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: all 0.4s ease-in-out;
+    }
+    .artist_name {
+        text-shadow:
+            0px 0px 10px rgba(0, 0, 0, 0.5),
+            0px 0px 3px white;
+        font-size: 0.9rem;
+        font-weight: 200;
+        transition: all 0.4s ease-in-out;
+    }
+
+    color: #ffffff;
+    padding: 15px 40px;
 }
