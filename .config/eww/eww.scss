@@ -1,3 +1,8 @@
+$text-color: #f0f0f0;
+$text-color-transparent: rgba(240, 240, 240, 0.6);
+$bg-color: rgba(16, 18, 23, 1);
+$bg-frosted: rgba(16, 18, 23, 0.6);
+$object-color: #2e2e2e;
 * {
     font-family: "Product Sans";
 
@@ -8,36 +13,41 @@
 
 @keyframes pulse {
     0% {
-        background: radial-gradient(#222436, black);
+        background: radial-gradient($bg-color, black);
     }
     50% {
         background: radial-gradient(black, black);
     }
     100% {
-        background: radial-gradient(#222436, black);
+        background: radial-gradient($bg-color, black);
     }
 }
 
 .activate-linux {
-    color: rgba(250, 250, 250, 0.6);
+    color: $text-color-transparent;
     text-shadow: 2px 5px 50px rgba(0, 0, 0, 0.2);
 }
 
 .clock {
-    color: rgba(250, 250, 250, 1);
-    opacity: 0.9;
-    font-size: 5rem;
-    font-weight: bold;
+    color: $text-color;
+    opacity: 1;
+    font-size: 5.5rem;
+    font-weight: 400;
     text-shadow:
-        5px 10px rgba(0, 0, 0, 0.2),
-        -3px -3px 0 rgba(0, 0, 0, 0.2),
-        3px -3px 0 rgba(0, 0, 0, 0.2),
-        -3px 3px 0 rgba(0, 0, 0, 0.2),
-        3px 3px 0 rgba(0, 0, 0, 0.2),
-        -3px 0 0 rgba(0, 0, 0, 0.2),
-        3px 0 0 rgba(0, 0, 0, 0.2),
-        0 -3px 0 rgba(0, 0, 0, 0.2),
-        0 3px 0 rgba(0, 0, 0, 0.2);
+        0px 1px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px rgba(255, 255, 255, 0.3);
+    letter-spacing: -2px;
+
+    .pm_text {
+        font-size: 4rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        font-weight: 200;
+        opacity: 0.85;
+        text-shadow:
+            0px 1px 4px rgba(0, 0, 0, 0.5),
+            0 0 8px rgba(255, 255, 255, 0.2);
+    }
 }
 
 .getting-shit-ready-2,
@@ -46,14 +56,32 @@
         animation: pulse 10s infinite ease-in-out;
     }
 
-    color: rgba(250, 250, 250, 1);
+    color: $text-color;
     font-size: 1.5rem;
     font-weight: normal;
 }
 
+@keyframes pulse_glow {
+    0% {
+        text-shadow:
+            0px 0px 10px rgba(0, 0, 0, 0.5),
+            0px 0px 5px white;
+    }
+    50% {
+        text-shadow:
+            0px 0px 10px rgba(0, 0, 0, 0.5),
+            0px 0px 1px white;
+    }
+    100% {
+        text-shadow:
+            0px 0px 10px rgba(0, 0, 0, 0.5),
+            0px 0px 5px white;
+    }
+}
+
 .media {
     &.background {
-        background: rgba(16, 18, 23, 0.6);
+        background: $bg-frosted;
         border-radius: 15px;
         border: 2px solid rgba(255, 255, 255, 0.3);
     }
@@ -63,11 +91,11 @@
         margin: 0px 0.3rem;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background: #2e2e2e;
+        background: $object-color;
         transition: all 0.4s ease-in-out;
 
         &:hover {
-            background: radial-gradient(#2e2e2e, lighten(#2e2e2e, 10%));
+            background: radial-gradient($object-color, lighten($object-color, 10%));
         }
     }
 
@@ -81,28 +109,26 @@
 
     .duration {
         label {
+            animation: pulse_glow 10s infinite ease-in-out;
             font-size: 1rem;
             font-weight: bold;
         }
     }
 
     .song_name {
-        text-shadow:
-            0px 0px 10px rgba(0, 0, 0, 0.5),
-            0px 0px 3px white;
+        animation: pulse_glow 10s infinite ease-in-out;
         font-size: 1.2rem;
         font-weight: bold;
         transition: all 0.4s ease-in-out;
     }
     .artist_name {
-        text-shadow:
-            0px 0px 10px rgba(0, 0, 0, 0.5),
-            0px 0px 3px white;
+        animation: pulse_glow 10s infinite ease-in-out;
         font-size: 0.9rem;
         font-weight: 200;
         transition: all 0.4s ease-in-out;
+        letter-spacing: 0.5px;
     }
 
-    color: #ffffff;
-    padding: 15px 40px;
+    color: $text-color;
+    padding: 1rem 2rem;
 }

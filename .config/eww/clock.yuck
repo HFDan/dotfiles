@@ -1,13 +1,16 @@
 
 (defwidget clock []
-  (box
-    :orientation "v"
-    :halign "center"
-    :valign "center"
-    (label :xalign 0 :text "${formattime(EWW_TIME, "%I:%M %p")}")))
+    (box
+        :orientation "h"
+        :halign "center"
+        :valign "center"
+        (label :xalign 0.5 :text "${formattime(EWW_TIME, "%I:%M")}")
+        (label :class "pm_text" :xalign 0.5 :text "${formattime(EWW_TIME, "%p")}")
+    )
+)
 
 (defwindow clock
   :monitor 0
   :stacking "bg"
-  :geometry (geometry :x "0px" :y "50px" :width "100%" :anchor "top center")
+  :geometry (geometry :x "0px" :y "8.5%" :width "100%" :anchor "top center")
   (clock))

@@ -38,8 +38,8 @@
       :orientation "v"
       :halign "start"
       :valign "center"
-      (label :class "song_name" :xalign 0 :text "${song_name}")
-      (label :class "artist_name" :xalign 0 :text "${artist_name}")
+      (label :class "song_name" :xalign 0 :lines 1 :text "${song_name}")
+      (label :class "artist_name" :xalign 0 :lines 1 :text "${artist_name}")
     )
 
     (box
@@ -99,7 +99,7 @@
   :stacking "bottom"
   :focusable "false"
   :namespace "eww_media"
-  :geometry (geometry :x "30%" :y "20px" :width "70%" :anchor "bottom center")
+  :geometry (geometry :x "30%" :y "2%" :width "70%" :anchor "bottom center")
   (revealer
     :transition "slideup"
     :reveal show_media
