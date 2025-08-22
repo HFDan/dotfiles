@@ -1,0 +1,209 @@
+diff --git a/config/SessionConfig.qml b/config/SessionConfig.qml
+index f65ec6d..ac0ef5f 100644
+--- a/config/SessionConfig.qml
++++ b/config/SessionConfig.qml
+@@ -13,6 +13,7 @@ JsonObject {
+         property list<string> shutdown: ["systemctl", "poweroff"]
+         property list<string> hibernate: ["systemctl", "hibernate"]
+         property list<string> reboot: ["systemctl", "reboot"]
++        property list<string> dnd: ["caelestia", "shell", "notifs", "toggleDnd"]
+     }
+ 
+     component Sizes: JsonObject {
+diff --git a/modules/background/DesktopClock.qml b/modules/background/DesktopClock.qml
+index 6dc6b6b..de04440 100644
+--- a/modules/background/DesktopClock.qml
++++ b/modules/background/DesktopClock.qml
+@@ -11,7 +11,7 @@ Item {
+         id: timeText
+ 
+         anchors.centerIn: parent
+-        text: Time.format(Config.services.useTwelveHourClock ? "hh:mm:ss A" : "hh:mm:ss")
++        text: Time.format(Config.services.useTwelveHourClock ? "hh:mm A" : "hh:mm")
+         font.pointSize: Appearance.font.size.extraLarge
+         font.bold: true
+     }
+diff --git a/modules/bar/components/ActiveWindow.qml b/modules/bar/components/ActiveWindow.qml
+index 3bea956..4b94c9c 100644
+--- a/modules/bar/components/ActiveWindow.qml
++++ b/modules/bar/components/ActiveWindow.qml
+@@ -48,7 +48,7 @@ Item {
+ 
+         text: Hyprland.activeToplevel?.title ?? qsTr("Desktop")
+         font.pointSize: Appearance.font.size.smaller
+-        font.family: Appearance.font.family.mono
++        font.family: Appearance.font.family.sans
+         elide: Qt.ElideRight
+         elideWidth: root.maxHeight - icon.height
+ 
+diff --git a/modules/bar/components/Clock.qml b/modules/bar/components/Clock.qml
+index 46f0e47..6e60f0f 100644
+--- a/modules/bar/components/Clock.qml
++++ b/modules/bar/components/Clock.qml
+@@ -27,7 +27,7 @@ Column {
+         horizontalAlignment: StyledText.AlignHCenter
+         text: Time.format(Config.services.useTwelveHourClock ? "hh\nmm\nA" : "hh\nmm")
+         font.pointSize: Appearance.font.size.smaller
+-        font.family: Appearance.font.family.mono
++        font.family: Appearance.font.family.sans
+         color: root.colour
+     }
+ }
+diff --git a/modules/launcher/items/AppItem.qml b/modules/launcher/items/AppItem.qml
+index 4794331..0caa331 100644
+--- a/modules/launcher/items/AppItem.qml
++++ b/modules/launcher/items/AppItem.qml
+@@ -54,6 +54,7 @@ Item {
+ 
+                 text: root.modelData?.name ?? ""
+                 font.pointSize: Appearance.font.size.normal
++                font.weight: 700
+             }
+ 
+             StyledText {
+diff --git a/modules/session/Content.qml b/modules/session/Content.qml
+index ca6bf17..a5b0dbf 100644
+--- a/modules/session/Content.qml
++++ b/modules/session/Content.qml
+@@ -19,6 +19,29 @@ Column {
+ 
+     spacing: Appearance.spacing.large
+ 
++    SessionButton {
++        id: dnd
++
++        icon: "do_not_disturb_on"
++        command: Config.session.commands.dnd
++
++        KeyNavigation.down: logout
++
++        Connections {
++            target: root.visibilities
++
++            function onSessionChanged(): void {
++                if (root.visibilities.session)
++                    logout.focus = true;
++            }
++
++            function onLauncherChanged(): void {
++                if (root.visibilities.session && !root.visibilities.launcher)
++                    logout.focus = true;
++            }
++        }
++    }
++
+     SessionButton {
+         id: logout
+ 
+@@ -26,6 +49,7 @@ Column {
+         command: Config.session.commands.logout
+ 
+         KeyNavigation.down: shutdown
++        KeyNavigation.up: dnd
+ 
+         Connections {
+             target: root.visibilities
+@@ -139,4 +163,60 @@ Column {
+             font.weight: 500
+         }
+     }
++
++    component DnDButton: StyledRect {
++        id: button
++
++        required property string icon
++
++        implicitWidth: Config.session.sizes.button
++        implicitHeight: Config.session.sizes.button
++
++        radius: Appearance.rounding.large
++        color: button.activeFocus ? Colours.palette.m3secondaryContainer : Colours.tPalette.m3surfaceContainer
++
++        Keys.onEnterPressed: Quickshell.execDetached(button.command)
++        Keys.onReturnPressed: Quickshell.execDetached(button.command)
++        Keys.onEscapePressed: root.visibilities.session = false
++        Keys.onPressed: event => {
++            if (!Config.session.vimKeybinds)
++                return;
++
++            if (event.modifiers & Qt.ControlModifier) {
++                if (event.key === Qt.Key_J && KeyNavigation.down) {
++                    KeyNavigation.down.focus = true;
++                    event.accepted = true;
++                } else if (event.key === Qt.Key_K && KeyNavigation.up) {
++                    KeyNavigation.up.focus = true;
++                    event.accepted = true;
++                }
++            } else if (event.key === Qt.Key_Tab && KeyNavigation.down) {
++                KeyNavigation.down.focus = true;
++                event.accepted = true;
++            } else if (event.key === Qt.Key_Backtab || (event.key === Qt.Key_Tab && (event.modifiers & Qt.ShiftModifier))) {
++                if (KeyNavigation.up) {
++                    KeyNavigation.up.focus = true;
++                    event.accepted = true;
++                }
++            }
++        }
++
++        StateLayer {
++            radius: parent.radius
++            color: button.activeFocus ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
++
++            function onClicked(): void {
++                NotificationServer.dndEnabled = !NotificationServer.dndEnabled;
++            }
++        }
++
++        MaterialIcon {
++            anchors.centerIn: parent
++
++            text: button.icon
++            color: button.activeFocus ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
++            font.pointSize: Appearance.font.size.extraLarge
++            font.weight: 500
++        }
++    }
+ }
+diff --git a/services/Notifs.qml b/services/Notifs.qml
+index 87ecca5..e6c925b 100644
+--- a/services/Notifs.qml
++++ b/services/Notifs.qml
+@@ -13,6 +13,7 @@ Singleton {
+ 
+     readonly property list<Notif> list: []
+     readonly property list<Notif> popups: list.filter(n => n.popup)
++    property bool dndEnabled: false
+ 
+     NotificationServer {
+         id: server
+@@ -25,12 +26,14 @@ Singleton {
+         imageSupported: true
+ 
+         onNotification: notif => {
+-            notif.tracked = true;
++            if (!dndEnabled) {
++                notif.tracked = true;
+ 
+-            root.list.push(notifComp.createObject(root, {
+-                popup: true,
+-                notification: notif
+-            }));
++                root.list.push(notifComp.createObject(root, {
++                    popup: true,
++                    notification: notif
++                }));
++            }
+         }
+     }
+ 
+@@ -50,6 +53,10 @@ Singleton {
+             for (const notif of root.list)
+                 notif.popup = false;
+         }
++
++        function toggleDnd(): void {
++            root.dndEnabled = !root.dndEnabled;
++        }
+     }
+ 
+     component Notif: QtObject {

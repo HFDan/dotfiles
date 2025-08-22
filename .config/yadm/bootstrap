@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+# Bootstrap script for setting up a new machine with yadm
+# Run this script after cloning your yadm repository
+
+# Install dependencies
+
+TEMP_DIR="/tmp/yadm-bootstrap"
+
+mkdir -p $TEMP_DIR
+
+cd $TEMP_DIR || exit
+
+if [[ ! -f "/usr/bin/paru" ]]; then # Check if paru is installed
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -Csci
+    cd ..
+fi
+
+paru -S apple-fonts sddm-silent-theme hyprland hyprlang hyprlock hyprpicker hyprpolkitagent hyprutils hyprevents-git hyprprop-git quickshell-git caelestia-cli ddcutil brightnessctl app2unit cava networkmanager lm-sensors fish aubio libpipewire material-symbols ttf-jetbrains-mono-nerd grim swappy libqalculate
+
+# Install caelestia
+
+cd ~/.config/quickshell || mkdir -p ~/.config/quickshell
+cd ~/.config/quickshell || exit
+
+git clone https://github.com/caelestia-dots/shell.git caelestia
+g++ -std=c++17 -Wall -Wextra -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include/aubio -o beat_detector caelestia/assets/beat_detector.cpp -lpipewire-0.3 -laubio
+sudo mkdir -p /usr/lib/caelestia
+sudo mv beat_detector /usr/lib/caelestia/beat_detector
