@@ -3,29 +3,142 @@
 # Bootstrap script for setting up a new machine with yadm
 # Run this script after cloning your yadm repository
 
-# Install dependencies
+RED="\033[31m"
+TERM_RESET="\033[0m"
+
+function log() {
+    local level="$1"
+    shift
+    local msg="$*"
+
+    local color reset
+    reset="\033[0m"
+
+    case "$level" in
+        ERROR)   color="\033[31m" ;; # Red
+        WARN) color="\033[33m" ;; # Yellow
+        SUCCESS) color="\033[32m" ;; # Green
+        INFO)    color="\033[37m" ;; # White/gray
+        *)       color="\033[0m"  ;; # Default
+    esac
+    # Decide whether to include the level label
+    if [[ "$level" == "INFO" || "$level" == "SUCCESS" ]]; then
+        echo -e "${color}==>${reset} ${msg}"
+    else
+        echo -e "${color}==> ${level}:${reset} ${msg}"
+    fi
+}
+
+function ask() {
+    local prompt="$1"
+    local default="$2"  # Should be Y or N (caps)
+    local answer
+
+    # Figure out the prompt display for default
+    local prompt_default
+    if [[ "$default" == "Y" ]]; then
+        prompt_default="Y/n"
+    else
+        prompt_default="y/N"
+    fi
+
+    while true; do
+        read -rp "$prompt [$prompt_default]: " answer
+        # If empty, pick the default
+        if [[ -z "$answer" ]]; then
+            answer="$default"
+        fi
+        # Normalize to uppercase for comparison
+        answer="${answer^^}"
+        if [[ "$answer" == "Y" || "$answer" == "N" ]]; then
+            return $([[ "$answer" == "Y" ]] && echo 0 || echo 1)
+        else
+            echo "Please answer Y or N."
+        fi
+    done
+}
 
 TEMP_DIR="/tmp/yadm-bootstrap"
+log INFO "Making temp dir ${TEMP_DIR}"
+mkdir -p $TEMP_DIR || {
+    log ERROR "Could not make temp dir"
+    exit 1
+}
+cd $TEMP_DIR || {
+    log ERROR "Could not cd to temp dir"
+    exit 1
+}
 
-mkdir -p $TEMP_DIR
+ELEVATION_PROG=("/usr/bin/doas" "/usr/bin/sudo")
+for prog in "${ELEVATION_PROG[@]}"; do
+    if [[ -x "$prog" ]]; then
+        SELECTED_ELEVATION="$prog"
+        break
+    fi
+done
 
-cd $TEMP_DIR || exit
-
-if [[ ! -f "/usr/bin/paru" ]]; then # Check if paru is installed
-    git clone https://aur.archlinux.org/paru.git
+log INFO "Checking if paru is installed"
+if [[ ! -x "/usr/bin/paru" ]]; then # Check if paru is installed
+    log INFO "Installing paru"
+    git clone https://aur.archlinux.org/paru.git || {
+        log ERROR "Could not clone paru"
+        exit 1
+    }
     cd paru
-    makepkg -Csci
+    makepkg -Csci || {
+        log ERROR "Could not install paru"
+        exit 1
+    }
     cd ..
+    log SUCCESS "Finished installing paru"
+else
+    log SUCCESS "Paru is already installed" 
 fi
 
-paru -S apple-fonts sddm-silent-theme hyprland hyprlang hyprlock hyprpicker hyprpolkitagent hyprutils hyprevents-git hyprprop-git quickshell-git caelestia-cli ddcutil brightnessctl app2unit cava networkmanager lm-sensors fish aubio libpipewire material-symbols ttf-jetbrains-mono-nerd grim swappy libqalculate
+log INFO "Installing some dependencies"
+PKGLIST=(
+    "opendoas"
+    "git"
+    "openssh"
+    "base-devel"
+)
+"${SELECTED_ELEVATION}" "/usr/bin/pacman" -S --needed --noconfirm "${PKGLIST[@]}"
 
-# Install caelestia
+if ask "Do you want to generate ssh keys?" "Y"; then
+    log INFO "Generating ssh keys"
+    /usr/bin/ssh-keygen || {
+        log ERROR "Could not generate SSH keys"
+        exit 1
+    }
+    log SUCCESS "Generated ssh keys"
+else
+    log INFO "Skipping ssh keygen"
+fi
 
-cd ~/.config/quickshell || mkdir -p ~/.config/quickshell
-cd ~/.config/quickshell || exit
+if ! ask "Are your keys logged into github?" "Y"; then
+    read -rp "Press enter when they are... "
+fi
 
-git clone https://github.com/caelestia-dots/shell.git caelestia
-g++ -std=c++17 -Wall -Wextra -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -I/usr/include/aubio -o beat_detector caelestia/assets/beat_detector.cpp -lpipewire-0.3 -laubio
-sudo mkdir -p /usr/lib/caelestia
-sudo mv beat_detector /usr/lib/caelestia/beat_detector
+/usr/bin/paru -S "caelestia-cli-git" || {
+    log ERROR "Could not install caelestia-cli"
+    exit 1
+}
+/usr/bin/git clone git@github.com:HFDan/caelestia-shell.git || {
+    log ERROR "Could not clone caelestia"
+    exit 1
+}
+cd caelestia-shell
+/usr/bin/makepkg -Csci || {
+    log ERROR "Could not build caelestia successfully"
+    exit 1
+}
+cd ..
+
+/usr/bin/git clone git@github.com:HFDan/dani-utils.git
+cd dani-utils
+/usr/bin/makepkg -Csci || {
+    log ERROR "Could not build dani-utils successfully"
+    exit 1
+}
+
+log SUCCESS "Done"
