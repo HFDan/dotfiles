@@ -9,7 +9,7 @@ $shlvl\
 $shell\
 $env_var\
 $jobs\
-$sudo\
+${custom.doas}\
 $username\
 $hostname\
 $character"""
@@ -98,6 +98,11 @@ $status\
 $cmd_duration\
 $time\
 """
+
+[custom.doas]
+when = "doas -n true"
+style = "bold italic bright-purple"
+symbol = "⋈┈"
 
 [custom.vpn_ip]
 command = "echo $(ip -brief address show tun0 | awk '{print $3}' | awk -F/ '{print $1}')"
