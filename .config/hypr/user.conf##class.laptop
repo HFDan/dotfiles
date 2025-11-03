@@ -1,3 +1,3 @@
 #bind = ,switch:Lid Switch,exec,/usr/bin/hyprlock
 bind = , XF86Launch1, exec, kitty "--class=dani-config-internal-float" -e "open-update-menu" pacman
-bind = Alt, XF86Launch1, exec, kitty "--class=dani-config-internal-float" -e "open-update-menu" pacman
+bind = Alt, XF86Launch1, exec, kitty "--class=dani-config-internal-float" -e "open-update-menu" aur

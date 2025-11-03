@@ -1,0 +1,8 @@
+{
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "powerUsagePlugin": {
+    "enabled": true
+  }
+}
