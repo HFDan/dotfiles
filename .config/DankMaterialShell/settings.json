@@ -1,13 +1,13 @@
 {
-  "currentThemeName": "dynamic",
+  "currentThemeName": "cat-pink",
   "customThemeFile": "",
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
-  "dankBarTransparency": 1,
+  "dankBarTransparency": 0.5,
   "dankBarWidgetTransparency": 1,
   "popupTransparency": 1,
-  "dockTransparency": 1,
+  "dockTransparency": 0.6,
   "use24HourClock": false,
   "showSeconds": false,
   "useFahrenheit": false,
@@ -76,6 +76,11 @@
       "id": "darkMode",
       "enabled": true,
       "width": 50
+    },
+    {
+      "id": "doNotDisturb",
+      "enabled": true,
+      "width": 50
     }
   ],
   "showWorkspaceIndex": false,
@@ -93,8 +98,8 @@
   "keyboardLayoutNameCompactMode": false,
   "runningAppsCurrentWorkspace": false,
   "runningAppsGroupByApp": false,
-  "clockDateFormat": "",
-  "lockDateFormat": "",
+  "clockDateFormat": "yyyy-MM-dd",
+  "lockDateFormat": "yyyy-MM-dd",
   "mediaSize": 1,
   "dankBarLeftWidgets": [
     "launcherButton",
@@ -109,21 +114,44 @@
     }
   ],
   "dankBarCenterWidgets": [
-    "clock",
-    "weather",
     {
-      "id": "powerUsagePlugin",
+      "id": "clock",
       "enabled": true
     }
   ],
   "dankBarRightWidgets": [
-    "systemTray",
-    "clipboard",
-    "cpuUsage",
-    "memUsage",
-    "notificationButton",
-    "battery",
-    "controlCenterButton"
+    {
+      "id": "systemTray",
+      "enabled": true
+    },
+    {
+      "id": "clipboard",
+      "enabled": true
+    },
+    {
+      "id": "cpuUsage",
+      "enabled": true
+    },
+    {
+      "id": "memUsage",
+      "enabled": true
+    },
+    {
+      "id": "notificationButton",
+      "enabled": true
+    },
+    {
+      "id": "battery",
+      "enabled": true
+    },
+    {
+      "id": "weather",
+      "enabled": true
+    },
+    {
+      "id": "controlCenterButton",
+      "enabled": true
+    }
   ],
   "appLauncherViewMode": "list",
   "spotlightModalViewMode": "list",
@@ -131,7 +159,7 @@
   "networkPreference": "auto",
   "vpnLastConnected": "",
   "iconTheme": "System Default",
-  "launcherLogoMode": "compositor",
+  "launcherLogoMode": "os",
   "launcherLogoCustomPath": "",
   "launcherLogoColorOverride": "surface",
   "launcherLogoColorInvertOnMode": false,
@@ -157,15 +185,15 @@
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
-  "showDock": false,
-  "dockAutoHide": false,
-  "dockGroupByApp": false,
+  "showDock": true,
+  "dockAutoHide": true,
+  "dockGroupByApp": true,
   "dockOpenOnOverview": false,
   "dockPosition": 1,
-  "dockSpacing": 4,
+  "dockSpacing": 8,
   "dockBottomGap": 0,
   "dockIconSize": 40,
-  "dockIndicatorStyle": "circle",
+  "dockIndicatorStyle": "line",
   "cornerRadius": 12,
   "notificationOverlayEnabled": false,
   "dankBarAutoHide": false,
@@ -189,7 +217,7 @@
   "maxFprintTries": 3,
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sch",
-  "surfaceBase": "sc",
+  "surfaceBase": "s",
   "wallpaperFillMode": "Fill",
   "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": false,
