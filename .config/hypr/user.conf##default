@@ -1,2 +1,3 @@
 bind = , Pause, exec, kitty "--class=dani-config-internal-float" -e "open-update-menu" pacman 
 bind = Alt, Pause, exec, kitty "--class=dani-config-internal-float" -e "open-update-menu" aur
+
